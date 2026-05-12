@@ -1,0 +1,5 @@
+push-heroku: ##push to heroku
+    git push heroku main
+
+upgrade-postgresql: ## push DB updates
+    heroku run alembic upgrade head
