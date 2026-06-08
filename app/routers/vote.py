@@ -14,6 +14,8 @@ def vote(vote: schemas.Vote , db : Session = Depends(get_db) , current_user : mo
 
     if not post :
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"post with id : {vote.post_id} does not exist")
+    if current_user.id == post.user_id:
+        raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="you can't vote on your own post")
 
 
     vote_query = db.query(models.Vote).filter(models.Vote.post_id == vote.post_id, models.Vote.user_id == current_user.id)
