@@ -8,3 +8,11 @@ jobs:
         uses: actions/checkout@v6
       - name : greeting moo
         run: echo "Hello MoO"
+      - name: installing python 3.14
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: updating pip
+        run: python -m pip install --upgrade pip
+      - name: install all dependencies
+        run: pip install -r requirments.txt
